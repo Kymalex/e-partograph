@@ -38,6 +38,9 @@ class Nurse(UserMixin, db.Model):
     def load_user(user_id):
         return Nurse.query.get(int(user_id))
 
+    def __repr__(self):
+        return '{}'.format(self.id)
+
 class Patient(db.Model):
     '''
     creates patients table
@@ -56,6 +59,19 @@ class Patient(db.Model):
     ward_id = db.Column(db.Integer, db.ForeignKey('wards.id'))
     created_at = db.Column(db.DateTime, default=datetime.utcnow())
 
+    def __init__(self, firstname, lastname, age, phone_no, email, id_no, nhif_no, ward_id):
+        self.firstname = firstname
+        self.lastname = lastname
+        self.age = age
+        self.phone_no = phone_no
+        self.email = email
+        self.id_no = id_no
+        self.nhif_no = nhif_no
+        self.ward_id = ward_id
+
+    def save(self):
+        db.session.add(self)
+        db.session.commit()    
 
 class Ward(db.Model):
     '''
@@ -68,6 +84,16 @@ class Ward(db.Model):
     name = db.Column(db.String(64), nullable=False)
     nurse_id = db.Column(db.Integer, db.ForeignKey('nurses.id'))
     created_at = db.Column(db.DateTime, default=datetime.utcnow())
+
+    def __init__(self, name):
+        self.name = name
+
+    def save(self):
+        db.session.add(self)
+        db.session.commit()
+
+    def __repr__(self):
+        return '{}'.format(self.name)
 
 
 class Record(db.Model):

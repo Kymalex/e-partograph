@@ -1,16 +1,43 @@
 {% extends "base.html" %}
 {% block title %}Dashboard{% endblock %}
 {% block body %}
-<div class="container">
+    <h1 class="text-center">Dashboard</h1>
     <div class="row">
-        <div class="col-lg-12">
-            <div class="intro-message">
-                <h1>Dashboard</h1>
-                <h3></h3>
-                <hr class="intro-divider">
-                </ul>
-            </div>
+        <div class="col-lg-4">
+            <h3>Patients</h3>
+            <hr>
+            <a class="btn btn-outline-primary" href="{{ url_for('patient.create') }}">Add a patient</a>
+            {{ patients }}
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Email</th>
+                        <th>Phone NO</th>
+                        <th>Age</th>
+                        <th>ID</th>
+                        <th>NHIF</th>
+                        <th>Ward</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for patient in patients %}
+                        <tr>
+                            <td>{{ patient.firstname }} {{ patient.lastname }}</td>
+                            <td>{{ patient.age }}</td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        <div class="col-lg-4">
+            <h3>Wards</h3>
+            <hr>
+            <a class="btn btn-outline-primary" href="{{ url_for('ward.create') }}">Add a ward</a>
+        </div>
+        <div class="col-lg-4">
+            <h3>Nurses</h3>
+            <hr>
         </div>
     </div>
-</div>
 {% endblock %}

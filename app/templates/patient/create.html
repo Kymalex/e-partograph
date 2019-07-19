@@ -1,0 +1,12 @@
+{% import "bootstrap/utils.html" as utils %}
+{% import "bootstrap/wtf.html" as wtf %}
+{% extends "base.html" %}
+{% block title %}Add Patient{% endblock %}
+{% block body %}
+<br>
+{{ utils.flashed_messages() }}
+<br>
+<h1>Add a patient</h1>
+<hr>
+{{ wtf.quick_form(form) }}
+{% endblock %}

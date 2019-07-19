@@ -37,4 +37,8 @@ def create_app(env_name):
     app.register_blueprint(auth_blueprint)
     from app.home import home as home_blueprint
     app.register_blueprint(home_blueprint)
+    from app.patient import patient as patient_blueprint
+    app.register_blueprint(patient_blueprint)
+    from app.ward import ward as ward_blueprint
+    app.register_blueprint(ward_blueprint)
     return app

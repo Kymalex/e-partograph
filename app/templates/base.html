@@ -20,7 +20,6 @@
 
     <div class="collapse navbar-collapse" id="navbarColor01">
       <ul class="navbar-nav mr-auto">
-
         {% if current_user.is_authenticated %}
         <li class="nav-item">
           <a class="nav-link" href="{{ url_for('home.dashboard') }}">Dashboard</a>
