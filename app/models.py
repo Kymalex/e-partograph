@@ -3,12 +3,13 @@
 # inbuilt import
 from datetime import datetime
 from werkzeug.security import generate_password_hash, check_password_hash
+from flask_login import UserMixin
 
 # local imports
-from app import db
+from app import db, login_manager
 
 
-class Nurse(db.Model):
+class Nurse(UserMixin, db.Model):
     '''
     creates a nurses table
     '''
@@ -19,7 +20,7 @@ class Nurse(db.Model):
     emp_id = db.Column(db.String(64), nullable=False)
     firstname = db.Column(db.String(64), nullable=False)
     lastname = db.Column(db.String(64), nullable=False)
-    password_hash = db.Column(db.String(64))
+    password_hash = db.Column(db.String(255))
     is_admin  = db.Column(db.Boolean, default=False)
     created_at = db.Column(db.DateTime, default=datetime.utcnow())
 
@@ -31,6 +32,11 @@ class Nurse(db.Model):
 
     def verify_password(self, password):
         return check_password_hash(self.password_hash, password)
+
+    # Set up user_loader
+    @login_manager.user_loader
+    def load_user(user_id):
+        return Nurse.query.get(int(user_id))
 
 class Patient(db.Model):
     '''

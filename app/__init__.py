@@ -7,26 +7,34 @@ from datetime import datetime
 from flask import Flask, render_template
 from flask_sqlalchemy import SQLAlchemy
 from flask_migrate import Migrate
+from flask_bootstrap import Bootstrap
+from flask_login import LoginManager
 
 # local imports
 from config import app_config
 
 db = SQLAlchemy()
+login_manager = LoginManager()
 
 def create_app(env_name):
     app = Flask(__name__)
     app.config.from_object(app_config[env_name])
 
-
     db.init_app(app)
+    login_manager.init_app(app)
+    login_manager.login_view = "auth.login"
+    login_manager.login_message = "You must be logged in to access this page."
 
     migrate = Migrate(app=app, db=db)
 
+    # import database models
     from app.models import Nurse, Patient, Ward, Record
 
-    @app.route('/')
-    def index():
-        return render_template('home.html', title="Home", year=datetime.utcnow())
-
+    Bootstrap(app)
     
+    # register blueprints
+    from app.auth import auth as auth_blueprint
+    app.register_blueprint(auth_blueprint)
+    from app.home import home as home_blueprint
+    app.register_blueprint(home_blueprint)
     return app

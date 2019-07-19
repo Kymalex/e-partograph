@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% block title %}Home{% endblock %}
+{% block body %}
+<div class="container">
+    <div class="row">
+        <div class="col-lg-6">
+            <div class="intro-message">
+                <h1>E-partograph</h1>
+                <br>
+                <h3>Revolutionizing the medical world</h3>
+                <br>
+                <a class="btn btn-outline-primary" href="{{ url_for('auth.login') }}">Login</a>
+                <a class="btn btn-outline-secondary" href="{{ url_for('auth.register') }}">Register</a>
+            </div>
+        </div>
+        <div class="col-lg-6">
+            <div class="intro-header"></div>
+        </div>
+    </div>
+</div>
+{% endblock %}

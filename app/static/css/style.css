@@ -1,36 +1,6 @@
 /* app/static/css/style.css */
-
-
-footer {
-    padding: 50px 0;
-    background-color: #f8f8f8;
-}
-
-p.copyright {
-    margin: 15px 0 0;
-}
-
-
-.center {
-    margin: auto;
-    width: 50%;
-    padding: 10px;
-}
-
-.content-section {
-    padding: 50px 0;
-    border-top: 1px solid #e7e7e7;
-}
-
-.footer, .push {
-  clear: both;
-  height: 4em;
-}
-
-.intro-divider {
-    width: 400px;
-    border-top: 1px solid #f8f8f8;
-    border-bottom: 1px solid rgba(0,0,0,0.2);
+html {
+    font-family: 'Raleway', sans-serif;
 }
 
 .intro-header {
@@ -51,28 +21,19 @@ p.copyright {
     padding-bottom: 20%;
 }
 
-.intro-message > h1 {
+.intro-message>h1 {
     margin: 0;
-    text-shadow: 2px 2px 3px rgba(0,0,0,0.6);
+    text-shadow: 2px 2px 3px rgba(0, 0, 0, 0.6);
     font-size: 5em;
 }
 
-.intro-message > h3 {
-    text-shadow: 2px 2px 3px rgba(0,0,0,0.6);
-}
-
-.lead {
-    font-size: 18px;
-    font-weight: 400;
-}
-
-.topnav {
-    font-size: 14px;
+.intro-message>h3 {
+    text-shadow: 2px 2px 3px rgba(0, 0, 0, 0.6);
 }
 
 .wrapper {
-  min-height: 100%;
-  height: auto !important;
-  height: 100%;
-  margin: 0 auto -4em;
+    min-height: 100%;
+    height: auto !important;
+    height: 100%;
+    margin: 0 auto -4em;
 }
